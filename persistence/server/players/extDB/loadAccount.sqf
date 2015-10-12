@@ -6,12 +6,23 @@
 
 if (!isServer) exitWith {};
 
-private ["_UID", "_bank", "_moneySaving", "_result", "_data", "_columns", "_dataTemp", "_ghostingTimer", "_secs"];
+private ["_UID", "_bank", "_moneySaving", "_result", "_data", "_columns", "_dataTemp", "_ghostingTimer", "_secs","_donator","_donatorEnabled"];
 _UID = _this;
 
 _bank = 0;
+_donatorLevel = 0;
 _moneySaving = ["A3W_moneySaving"] call isConfigOn;
+_donatorEnabled = ["A3W_donatorEnabled"] call isConfigOn;
 
+if (_donatorEnabled) then
+{
+	_result = ["getPlayerDonatorLevel:" + _UID, 2] call extDB_Database_async;
+
+	if (count _result > 0) then
+	{
+		_donatorLevel = _result select 0;
+	};
+};
 if (_moneySaving) then
 {
 	_result = ["getPlayerBankMoney:" + _UID, 2] call extDB_Database_async;
@@ -29,7 +40,8 @@ if (!_result) then
 	_data =
 	[
 		["PlayerSaveValid", false],
-		["BankMoney", _bank]
+		["BankMoney", _bank],
+		["DonatorLevel", _donatorLevel]
 	];
 }
 else
@@ -121,6 +133,8 @@ else
 
 	_data append _dataTemp;
 	_data pushBack ["BankMoney", _bank];
+	_data pushBack ["DonatorLevel", _donatorLevel];
+	_data pushBack ["PlayerSaveValid", true];
 };
 
 _data
