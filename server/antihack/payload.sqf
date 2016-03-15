@@ -195,6 +195,24 @@ if (isNil "_cheatFlag") then
 				];
 			};
 
+			_display = findDisplay 129;
+			if (!isNull _display) then
+			{
+				sleep 0.5;
+				{
+					if (_x && !isNull _display) then
+					{
+						_cheatFlag = "RscDisplayDiary (Molaron)";
+						breakTo "sendFlag";
+					};
+				}
+				forEach
+				[
+					(ctrlText (_display displayCtrl 1111) == "Namespace:"),
+					{if (buttonAction (_display displayCtrl _x) != "") exitWith {true}; false} forEach [1600,1601,1602]
+				];
+			};
+
 			sleep 1;
 		};
 

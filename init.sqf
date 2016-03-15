@@ -1,4 +1,4 @@
-// ******************************************************************************************
+﻿// ******************************************************************************************
 // * This project is licensed under the GNU Affero GPL v3. Copyright © 2014 A3Wasteland.com *
 // ******************************************************************************************
 //	@file Version: 1.2
@@ -6,7 +6,13 @@
 //	@file Author: [404] Deadbeat, [GoT] JoSchaap, AgentRev
 //	@file Description: The main init.
 
+#include "debugFlag.hpp"
+
+#ifdef A3W_DEBUG
+#define DEBUG true
+#else
 #define DEBUG false
+#endif
 
 enableSaving [false, false];
 
@@ -89,5 +95,7 @@ if (hasInterface || isServer) then
 	[] execVM "addons\HvT\HvT.sqf";                       // High Value Target
 	[] execVM "addons\HvT\HvD.sqf";                       // High Value Drugrunner
 	[] execVM "addons\APOC_Airdrop_Assistance\init.sqf";
+	if(hasInterface) then{[] execVM "addons\statusBar\statusbar.sqf"}; 
+	if (!isserver) then {[]execvm "advertise.sqf";};
 	if (isNil "drn_DynamicWeather_MainThread") then { drn_DynamicWeather_MainThread = [] execVM "addons\scripts\DynamicWeatherEffects.sqf" };
 };

@@ -14,6 +14,25 @@ if (isNil "_killer" && !isNil "FAR_findKiller") then { _killer = _player call FA
 if (isNil "_killer" || {isNull _killer}) then { _killer = _presumedKiller };
 if (_killer == _player) then { _killer = objNull };
 
+// GoT - create a R.I.P. marker (visible for the player only) to help locate it's body
+createBodyMarker = 
+{
+	deleteMarkerLocal "deadMarker";
+	_pos = getPos (vehicle player);
+	_dMarker = createMarkerLocal ["deadMarker", _pos];
+	_dMarker setMarkerShapeLocal "ICON";
+	_dMarker setMarkerAlphaLocal 1;
+	_dMarker setMarkerPosLocal _pos;
+	_dMarker setMarkerTextLocal "R.I.P.";
+	_dMarker setMarkerColorLocal "ColorBlue";
+	_dMarker setMarkerTypeLocal "waypoint";
+	_dMarker setMarkerSizeLocal [0.6,0.6];
+	sleep 600;
+	deleteMarkerLocal _dMarker;
+};
+[] spawn createBodyMarker;
+
+
 [_player, _killer, _presumedKiller] spawn
 {
 	if (isServer) then
@@ -29,9 +48,9 @@ if (_killer == _player) then { _killer = objNull };
 
 if (_player == player) then
 {
-	closeDialog 2001; // Close Gunstore
-	closeDialog 2009; // Close Genstore
-	closeDialog 5285; // Close Vehstore
+	(findDisplay 2001) closeDisplay 0; // Close Gunstore
+	(findDisplay 2009) closeDisplay 0; // Close Genstore
+	(findDisplay 5285) closeDisplay 0; // Close Vehstore
 	uiNamespace setVariable ["BIS_fnc_guiMessage_status", false]; // close message boxes
 
 	// Load scoreboard in render scope

@@ -110,17 +110,20 @@ _building allowDamage false; // disable building damage
 if (isServer) then
 {
 	removeAllWeapons _npc;
+	_createStoreFurniture = compile preprocessFileLineNumbers "server\functions\createStoreFurniture.sqf";
 
 	waitUntil {!isNil "storeConfigDone"};
 
 	{
 		if (_x select 0 == _npcName) exitWith
 		{
-			private "_frontOffset";
+			private ["_frontOffset", "_bPos"];
 
 			//collect our arguments
 			_npcPos = _x select 1;
 			_deskDirMod = _x select 2;
+
+			if (_npcPos < 0) then { _npcPos = 1e9 }; // fix for buildingPos Arma 3 v1.55 change
 
 			if (typeName _deskDirMod == "ARRAY" && {count _deskDirMod > 0}) then
 			{

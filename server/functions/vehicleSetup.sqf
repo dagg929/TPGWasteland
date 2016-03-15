@@ -28,7 +28,7 @@ if (getNumber (configFile >> "CfgVehicles" >> _class >> "isUav") < 1) then
 	_vehicle disableTIEquipment true;
 };
 
-_vehicle setUnloadInCombat [true, false]; // Prevent AI gunners from getting out of vehicle while in combat if it's in working condition
+_vehicle setUnloadInCombat [false, false]; // Try to prevent AI from getting out of vehicles while in combat (not sure if this actually works...)
 
 {
 	_vehicle setVariable ["A3W_hitPoint_" + getText (_x >> "name"), configName _x, true];
@@ -46,7 +46,11 @@ _getInOut =
 	_unit = _this select 2;
 
 	_unit setVariable ["lastVehicleRidden", netId _vehicle, true];
-	_unit setVariable ["lastVehicleOwner", owner _vehicle == owner _unit, true];
+
+	if (isPlayer _unit && owner _vehicle == owner _unit) then
+	{
+		_vehicle setVariable ["lastVehicleOwnerUID", getPlayerUID _unit, true];
+	};
 
 	_vehicle setVariable ["vehSaving_hoursUnused", 0];
 	_vehicle setVariable ["vehSaving_lastUse", diag_tickTime];

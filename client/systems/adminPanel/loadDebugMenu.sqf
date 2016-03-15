@@ -25,8 +25,7 @@ if (_uid call isAdmin) then
 					"Access ATM Dialog",
 					"Access Respawn Dialog",
 					"Access Proving Grounds",
-					"Show Server FPS",
-					"Access TPG News"
+					"Show Server FPS"
 	];
 
 	{
