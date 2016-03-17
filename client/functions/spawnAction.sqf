@@ -25,14 +25,36 @@ spawnActionHandle = (_this select 1) spawn
 	private ["_switch", "_data"];
 	_switch = _this select 0;
 	_data = [_this select 1, false];
-
+	_donatorEnabled = ["A3W_donatorEnabled"] call isConfigOn;
+	_donatorLevel = player getVariable ["donatorLevel", 0];
 	if (isNil "playerData_resetPos") then
 	{
 		// Deal with money here
-		_baseMoney = ["A3W_startingMoney", 100] call getPublicVar;
-		player setVariable ["cmoney", _baseMoney, true];
 
-		if (["A3W_survivalSystem"] call isConfigOn) then
+		switch (_donatorLevel) do
+			{
+				case 1:
+				{
+					_baseMoney = ["A3W_startingMoney", 100] call getPublicVar;
+					player setVariable ["cmoney", 4000, true];
+				};
+				case 2:
+				{
+					_baseMoney = ["A3W_startingMoney", 100] call getPublicVar;
+					player setVariable ["cmoney", 3500, true];
+				};
+				case 3:
+				{
+					_baseMoney = ["A3W_startingMoney", 100] call getPublicVar;
+					player setVariable ["cmoney", 2000, true];
+				};
+				default 
+				{
+					_baseMoney = ["A3W_startingMoney", 100] call getPublicVar;
+					player setVariable ["cmoney", _baseMoney, true];
+				};
+			};
+	if (["A3W_survivalSystem"] call isConfigOn) then
 		{
 			[MF_ITEMS_CANNED_FOOD, 1] call mf_inventory_add;
 			[MF_ITEMS_WATER, 1] call mf_inventory_add;

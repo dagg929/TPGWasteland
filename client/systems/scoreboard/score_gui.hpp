@@ -113,7 +113,7 @@ class ScoreGUI : IGUIBack
 		class PListHead_PKills : w_RscStructuredText
 		{
 			idc = -1;
-			text = "<t underline='true' shadow='0'>P. kills</t>"; // Alt + 255
+			text = "<t underline='true' shadow='0'>P. kills</t>"; // Alt + 255
 			size = PListHead_textSize;
 
 			x = PListHead_PKills_X;
@@ -128,7 +128,7 @@ class ScoreGUI : IGUIBack
 		class PListHead_AIKills : w_RscStructuredText
 		{
 			idc = -1;
-			text = "<t underline='true' shadow='0'>AI kills</t>"; // Alt + 255
+			text = "<t underline='true' shadow='0'>AI kills</t>"; // Alt + 255
 			size = PListHead_textSize;
 
 			x = PListHead_AIKills_X;
@@ -195,11 +195,11 @@ class ScoreGUI : IGUIBack
 		#define PListEntryText2_Y PListEntry_Name_Y
 
 		#define PListEntry_TColor_W (0.01 * X_SCALE)
-		#define PListEntry_PKills_W (0.04 * X_SCALE)
-		#define PListEntry_AIKills_W (0.04 * X_SCALE)
-		#define PListEntry_Deaths_W (0.04 * X_SCALE)
-		#define PListEntry_Revives_W (0.04 * X_SCALE)
-		#define PListEntry_Captures_W (0.04 * X_SCALE)
+		#define PListEntry_PKills_W (0.06 * X_SCALE)
+		#define PListEntry_AIKills_W (0.06 * X_SCALE)
+		#define PListEntry_Deaths_W (0.06 * X_SCALE)
+		#define PListEntry_Revives_W (0.06 * X_SCALE)
+		#define PListEntry_Captures_W (0.06 * X_SCALE)
 
 		#define TListEntryControls_X safezoneX
 
@@ -458,7 +458,7 @@ class ScoreGUI : IGUIBack
 		class TListHead_PKills : w_RscStructuredText
 		{
 			idc = -1;
-			text = "<t underline='true' shadow='0'>P. kills</t>"; // Alt + 255
+			text = "<t underline='true' shadow='0'>P. kills</t>"; // Alt + 255
 			size = TListHead_textSize;
 
 			x = TListHead_PKills_X;

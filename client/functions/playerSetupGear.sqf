@@ -59,7 +59,6 @@ switch (_donatorLevel) do
 		_player addWeapon "Binocular";
 		_player linkItem "ItemGPS";
 		_player selectWeapon "hgun_ACPC2_F";
-		player setVariable ["cmoney", 4000, true];
 	};
 	case 2:
 	{
@@ -85,7 +84,6 @@ switch (_donatorLevel) do
 		_player addWeapon "Rangefinder";
 		_player linkItem "ItemGPS";
 		_player selectWeapon "hgun_Pistol_heavy_01_F";
-		player setVariable ["cmoney", 3000, true];
 	};
 	case 3:
 	{
@@ -120,7 +118,6 @@ switch (_donatorLevel) do
 		_player addWeapon "Laserdesignator";
 		_player linkItem "ItemGPS";
 		_player selectWeapon "hgun_Pistol_heavy_01_F";
-		player setVariable ["cmoney", 2000, true];
 	};
 	default 
 	{

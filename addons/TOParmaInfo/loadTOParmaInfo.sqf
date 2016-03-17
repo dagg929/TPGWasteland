@@ -26,11 +26,11 @@ _generalInfoString = "Website/Forums: <t color='#0091CD'><a href='http://totalpu
 _generalInfoText ctrlSetStructuredText parseText _generalInfoString;
 
 
-_rulesOnline = "http://totalpunishmentgaming.com/ARCHIVE/rules.html";
+_rulesOnline = "";
 _rulesOffline = "addons\TOParmaInfo\rules.html";
-_newsOnline = "http://totalpunishmentgaming.com/ARCHIVE/news.html";
+_newsOnline = "";
 _newsOffline = "addons\TOParmaInfo\news.html";
-_statsOnline = "http://totalpunishmentgaming.com/ARCHIVE/stats.html" + _uid;
+_statsOnline = "" + _uid;
 _statsOffline = "addons\TOParmaInfo\stats.html";
 
 
