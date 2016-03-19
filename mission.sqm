@@ -1825,7 +1825,7 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={6571.1099,48.722462,5049.4033};
+					position[]={6040.2471,17.656742,5628.8149};
 					azimut=-59.177204;
 					id=147;
 					side="LOGIC";
@@ -1845,7 +1845,7 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={1998.2252,2.8500669,2717.8875};
+					position[]={1969.9658,2.1323469,3504.8064};
 					azimut=-3.4249926;
 					id=148;
 					side="LOGIC";
@@ -1865,7 +1865,7 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={2853.3835,45.226212,3692.2544};
+					position[]={2924.9861,3.454103,5988.6426};
 					azimut=4.8233585;
 					id=149;
 					side="LOGIC";
@@ -2124,7 +2124,7 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={6038.79,17.548176,5629.3535};
+					position[]={6452.2012,8,5371.0889};
 					azimut=142.42555;
 					id=162;
 					side="LOGIC";
@@ -5836,7 +5836,7 @@ class Mission
 		};
 		class Item103
 		{
-			position[]={6558.4443,48.816204,5060.5938};
+			position[]={6061.6533,17.71077,5633.0039};
 			name="GenStore2_objSpawn";
 			type="Empty";
 			colorName="ColorBlack";
@@ -5844,7 +5844,7 @@ class Mission
 		};
 		class Item104
 		{
-			position[]={1986.431,2.717845,2727.7754};
+			position[]={1977.5082,2.5693917,3526.0469};
 			name="GenStore3_objSpawn";
 			type="Empty";
 			colorName="ColorBlack";
@@ -6154,7 +6154,7 @@ class Mission
 		};
 		class Item134
 		{
-			position[]={2854.3223,44.414433,3704.7065};
+			position[]={2934.458,3.49,5981.4849};
 			name="GunStore1_objSpawn";
 			type="Empty";
 			colorName="ColorBlack";
@@ -6526,7 +6526,7 @@ class Mission
 		};
 		class Item181
 		{
-			position[]={6051.5557,18.000059,5626.3413};
+			position[]={6470.8867,7.4345803,5397.0493};
 			name="GunStore6_objSpawn";
 			type="Empty";
 			colorName="ColorBlack";
