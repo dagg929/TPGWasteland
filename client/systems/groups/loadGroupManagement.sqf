@@ -22,6 +22,7 @@
 disableSerialization;
 
 private ["_start","_dialog","_myGroup","_playerListBox","_groupListBox","_uid","_namestr","_index","_groupCreate","_groupPromote","_groupInvite","_groupKick","_groupDisband","_groupLeaveButton","_inGroup","_isLeader","_name"];
+
 //closeDialog 0;
 _start = createDialog "GroupManagement";
 waitUntil{!isNull(findDisplay groupManagementDialog)};
@@ -69,7 +70,6 @@ while{groupManagmentActive} do
 		_groupDisband ctrlShow false;
 		_groupLeaveButton ctrlShow false;
 	};
-
 
 	//Sort Invite Controls
 	if(_hasInvite) then

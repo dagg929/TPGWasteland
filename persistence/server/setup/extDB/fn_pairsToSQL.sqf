@@ -37,6 +37,7 @@ _addRef = false;
 
 _setValues = [];
 _refValues = [];
+
 {
 	_key = _x select 0;
 
@@ -56,6 +57,7 @@ _refValues = [];
 		_refValues pushBack format ["%1=VALUES(%1)", _key];
 	};
 } forEach _pairs;
+
 _setValues = _setValues joinString ",";
 _refValues = _refValues joinString ",";
 

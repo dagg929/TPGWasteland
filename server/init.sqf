@@ -106,7 +106,7 @@ if (isServer) then
 	// Broadcast server rules
 	if (loadFile (externalConfigFolder + "\serverRules.sqf") != "") then
 	{
-		[[call compile preprocessFileLineNumbers (externalConfigFolder + "\serverRules.sqf")], "client\functions\defineServerRules.sqf"] remoteExec ["BIS_fnc_execVM", 0, true];
+		[[call compile preprocessFileLineNumbers (externalConfigFolder + "\serverRules.sqf")], "client\functions\defineServerRules.sqf"] remoteExecCall ["execVM", [-2,0] select hasInterface, true];
 	};
 };
 
@@ -170,7 +170,8 @@ if (isServer) then
 		"A3W_hcObjSavingID",
 		"A3W_townSpawnCooldown",
 		"A3W_maxSpawnBeacons",
-		"A3W_donatorEnabled"
+		"A3W_donatorEnabled",
+		"A3W_headshotNoRevive"
 	];
 
 	["A3W_join", "onPlayerConnected", { [_id, _uid, _name] spawn fn_onPlayerConnected }] call BIS_fnc_addStackedEventHandler;
@@ -191,7 +192,7 @@ _purchasedVehicleSavingOn = ["A3W_purchasedVehicleSaving"] call isConfigOn;
 _missionVehicleSavingOn = ["A3W_missionVehicleSaving"] call isConfigOn;
 
 _objectSavingOn = (_baseSavingOn || _boxSavingOn || _staticWeaponSavingOn || _warchestSavingOn || _warchestMoneySavingOn || _beaconSavingOn);
-_vehicleSavingOn = (_purchasedVehicleSavingOn || _purchasedVehicleSavingOn);
+_vehicleSavingOn = (_purchasedVehicleSavingOn || _missionVehicleSavingOn);
 _hcObjSavingOn = ["A3W_hcObjSaving"] call isConfigOn;
 
 if (_hcObjSavingOn) then
@@ -235,6 +236,8 @@ if (_playerSavingOn || _objectSavingOn || _vehicleSavingOn || _timeSavingOn || _
 			A3W_extDB_ConfigName = compileFinal str (["A3W_extDB_ConfigName", "A3W"] call getPublicVar);
 			A3W_extDB_IniName = compileFinal str (["A3W_extDB_IniName", "a3wasteland"] call getPublicVar);
 			A3W_extDB_RconName = compileFinal str (["A3W_extDB_RconName", "A3W"] call getPublicVar);
+
+			diag_log format ["[INFO] extDB2 v%1 extension loaded", _version];
 		}
 		else
 		{
@@ -303,9 +306,10 @@ if (_playerSavingOn || _objectSavingOn || _vehicleSavingOn || _timeSavingOn || _
 			{
 				waitUntil {scriptDone _this};
 
-				["A3W_flagCheckOnJoin", "onPlayerConnected", { [_uid, _name] spawn fn_kickPlayerIfFlagged }] call BIS_fnc_addStackedEventHandler;
+				["A3W_flagCheckOnJoin", "onPlayerConnected", { [_uid, _name, _owner] spawn fn_kickPlayerIfFlagged }] call BIS_fnc_addStackedEventHandler;
 
-				{ [getPlayerUID _x, name _x] call fn_kickPlayerIfFlagged } forEach allPlayers;
+				// force check for non-JIP players
+				{ waitUntil {!isNull player}; [player] remoteExec ["A3W_fnc_checkPlayerFlag", 2] } remoteExec ["call", -2];
 			};
 		};
 	};
